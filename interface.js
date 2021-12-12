@@ -36,5 +36,4 @@ inquirer.prompt(questions).then((answers) => {
   if (answers.confirm) {
     script(answers.nickname, answers.year);
   }
-  console.log("\nExiting...");
 });

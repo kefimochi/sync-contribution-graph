@@ -19,6 +19,7 @@
   "homepage": "https://github.com/kefimochi/sync-contribution-graph#readme",
   "dependencies": {
     "axios": "^0.24.0",
+    "fs": "0.0.1-security",
     "inquirer": "^8.2.0",
     "node-html-parser": "^5.1.0"
   }
