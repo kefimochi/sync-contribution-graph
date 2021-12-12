@@ -7,7 +7,7 @@ console.log("\nHello there!\n");
 const questions = [
   {
     type: "input",
-    name: "nickname",
+    name: "username",
     message:
       "Please enter GitHub nickname with which you'd like to sync contributions:",
     validate: (value) =>
@@ -25,15 +25,29 @@ const questions = [
     },
   },
   {
+    type: "list",
+    message: "How would you like this to happen?",
+    name: "execute",
+    choices: [
+      {
+        name: `Generate a bash script & execute it immediately.\n  Note: it *will* push to origin main and it would be difficult to undo.`,
+        value: true,
+      },
+      {
+        name: "Only generate, no execution.",
+        value: false,
+      },
+    ],
+  },
+  {
     type: "confirm",
     name: "confirm",
-    message: "Ready to push generated commits to remote origin?",
+    message: "Ready to proceed?",
   },
 ];
 
 inquirer.prompt(questions).then((answers) => {
-  console.log(JSON.stringify(answers, null, "  "));
   if (answers.confirm) {
-    script(answers.nickname, answers.year);
+    script(answers);
   }
 });
