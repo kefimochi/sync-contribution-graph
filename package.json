@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "bash ./publishCommits.sh"
+    "start": "node interface.js"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "homepage": "https://github.com/kefimochi/sync-contribution-graph#readme",
   "dependencies": {
     "axios": "^0.24.0",
-    "dotenv": "^10.0.0",
+    "inquirer": "^8.2.0",
     "node-html-parser": "^5.1.0"
   }
 }
