@@ -1,0 +1,13 @@
+on: push
+
+jobs:
+  backfill-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: bcanseco/github-contribution-graph-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_EMAIL: you@youremail.com # replace me
+          MAX_DAYS: 365
+          MIN_COMMITS_PER_DAY: 1
+          MAX_COMMITS_PER_DAY: 5

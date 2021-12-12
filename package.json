@@ -1,0 +1,24 @@
+{
+  "name": "sync-contribution-graph",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kefimochi/sync-contribution-graph.git"
+  },
+  "author": "Kate Efimova (@kefimochi)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kefimochi/sync-contribution-graph/issues"
+  },
+  "homepage": "https://github.com/kefimochi/sync-contribution-graph#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "node-html-parser": "^5.1.0"
+  }
+}
