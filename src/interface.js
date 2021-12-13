@@ -38,6 +38,7 @@ const questions = [
         value: false,
       },
     ],
+    default: () => false,
   },
   {
     type: "confirm",

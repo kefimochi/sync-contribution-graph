@@ -2,25 +2,18 @@
   "name": "sync-contribution-graph",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Generates empty commits to match contributions from other public GitHub accounts.",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node interface.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kefimochi/sync-contribution-graph.git"
+    "start": "node src/interface.js"
   },
   "author": "Kate Efimova (@kefimochi)",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kefimochi/sync-contribution-graph/issues"
-  },
-  "homepage": "https://github.com/kefimochi/sync-contribution-graph#readme",
   "dependencies": {
     "axios": "^0.24.0",
     "fs": "0.0.1-security",
     "inquirer": "^8.2.0",
-    "node-html-parser": "^5.1.0"
+    "node-html-parser": "^5.1.0",
+    "shelljs": "^0.8.4"
   }
 }

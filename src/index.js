@@ -1,6 +1,7 @@
 import { parse } from "node-html-parser";
 import axios from "axios";
 import fs from "fs";
+import shell from "shelljs";
 
 export default async (input) => {
   const res = await axios.get(
@@ -10,12 +11,12 @@ export default async (input) => {
   // Gathers all the squares from GitHub contribution graph.
   const allSquares = parse(res.data).querySelectorAll("[data-count]");
 
-  // We only want html elements of squares with 1+ commits/issues for that day.
   const script = allSquares
     .reduce((fullCommand, contribution) => {
       const count = contribution._rawAttrs["data-count"];
       const date = contribution._rawAttrs["data-date"];
 
+      // Only care about html elements of squares with 1+ contributions for that day.
       if (count > 0) {
         return (fullCommand +=
           `GIT_AUTHOR_DATE=${date}T12:00:00 GIT_COMMITER_DATE=${date}T12:00:00 git commit --allow-empty -m "Rewriting History!" > /dev/null\n`.repeat(
@@ -26,12 +27,12 @@ export default async (input) => {
     }, "#!/bin/bash \n")
     .concat("", "git pull origin main\ngit push -f origin main");
 
-  fs.writeFile("script.sh", script, (err) => {
-    if (err) throw err;
-    console.log("File is created successfully.");
-  });
+  fs.writeFile("script.sh", script, () => {
+    console.log("\nFile was created successfully.");
 
-  if (input.execute) {
-    console.log("Scary territory!");
-  }
+    if (input.execute) {
+      console.log("This might take a moment!\n");
+      shell.exec("sh ./script.sh");
+    }
+  });
 };
