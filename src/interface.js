@@ -1,8 +1,12 @@
 import inquirer from "inquirer";
 import script from "./index.js";
-import axios from "axios";
+import axios from "./axios.js";
 
 console.log("\nHello there!\n");
+
+const githubapi = process.env.GITHUB_DOMAIN
+  ? process.env.GITHUB_DOMAIN + "/api/v3"
+  : "api.github.com";
 
 const questions = [
   {
@@ -12,7 +16,7 @@ const questions = [
       "Please enter GitHub nickname with which you'd like to sync contributions:",
     validate: (value) =>
       axios
-        .get(`https://api.github.com/users/${value}`)
+        .get(`https://${githubapi}/users/${value}`)
         .then(() => true)
         .catch(() => "Please enter an existing GitHub username."),
   },

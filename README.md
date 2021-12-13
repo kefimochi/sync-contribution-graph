@@ -13,7 +13,7 @@
 1. [Create a new repo](https://github.com/new) and [clone it](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) on your local machine.
 
    > **Note:** You can't simply fork this repository because none of the commits will count toward the contribution graph.
-   [More info here](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile#issues-pull-requests-and-discussions).
+   > [More info here](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile#issues-pull-requests-and-discussions).
 
 2. Clone this project locally and copy/paste it's contents into the repo you just created.
 3. Run `npm i` in your terminal.
@@ -38,6 +38,17 @@ If you change your mind about these commits later, you can delete the repository
 Explore the [code](src/index.js)! It's tiny and there aren't many dependencies.
 
 It only scrapes publicly available data from existing GitHub contribution graphs. It does not have access to private commits or issues created. So I can promise that you will not get in trouble for syncing your personal and work GitHub graphs considering there isn't any private company code being exposed!
+
+## Using with Github Enterprise
+
+You'll need to set a few environmental variables
+
+```
+export GITHUB_DOMAIN=git.{YOURDOMAIN}.com
+export GITHUB_PERSONAL_ACCESS_TOKEN={a personal access token with the correct permissions to read users}
+export GITHUB_COOKIE={a cookie copied from an active browser session (this should work with pretty much all SSO implementations}
+npm run start
+```
 
 ## On Project's Future ✨
 

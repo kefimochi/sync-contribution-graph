@@ -1,11 +1,16 @@
 import { parse } from "node-html-parser";
-import axios from "axios";
+import axios from "./axios.js";
 import fs from "fs";
 import shell from "shelljs";
 
 export default async (input) => {
+  //In the case of a GitHub enterprise account, the API is at a different location
+  const githubdomain = process.env.GITHUB_DOMAIN
+    ? process.env.GITHUB_DOMAIN
+    : "github.com";
+
   const res = await axios.get(
-    `https://github.com/users/${input.username}/contributions?tab=overview&from=${input.year}-12-01&to=${input.year}-12-31`
+    `https://${githubdomain}/users/${input.username}/contributions?tab=overview&from=${input.year}-12-01&to=${input.year}-12-31`
   );
 
   // Gathers all the squares from GitHub contribution graph.
