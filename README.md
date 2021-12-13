@@ -12,7 +12,7 @@
 
 1. [Create a new repo](https://github.com/new) and [clone it](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) on your local machine.
 
-   **Note:** You can't simply fork this repository because none of the commits will count toward the contribution graph.
+   > **Note:** You can't simply fork this repository because none of the commits will count toward the contribution graph.
    [More info here](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile#issues-pull-requests-and-discussions).
 
 2. Clone this project locally and copy/paste it's contents into the repo you just created.
