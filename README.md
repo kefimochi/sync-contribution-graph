@@ -35,6 +35,17 @@ Explore the [code](src/index.js)! It's tiny and there aren't many dependencies.
 
 It only scrapes publicly available data from existing GitHub contribution graphs. It does not have access to private commits or issues created. So I can promise that you will not get in trouble for syncing your personal and work GitHub graphs considering there isn't any private company code being exposed!
 
+## Using with Github Enterprise
+
+You'll need to set a few environmental variables
+
+```
+export GITHUB_DOMAIN=git.{YOURDOMAIN}.com
+export GITHUB_PERSONAL_ACCESS_TOKEN={a personal access token with the correct permissions to read users}
+export GITHUB_COOKIE={a cookie copied from an active browser session (this should work with pretty much all SSO implementations}
+npm run start
+```
+
 ## On Project's Future ✨
 
 There's a lot of potential features and automations that could be added! Something as basic as accepting multiple years to pull at once, or more complicated like having a GitHub Action that once per month/year/time period creates a PR with newer commits, making it effortless to keep them synced.
