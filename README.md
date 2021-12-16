@@ -10,14 +10,10 @@
 
 ## How to Use 🚀
 
-1. [Create a new repo](https://github.com/new) and [clone it](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) on your local machine.
-
-   > **Note:** You can't simply fork this repository because none of the commits will count toward the contribution graph.
-   > [More info here](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-graphs-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile#issues-pull-requests-and-discussions).
-
-2. Clone this project locally and copy/paste it's contents into the repo you just created.
-3. Run `npm i` in your terminal.
-4. Use `run start` in order to trigger a series of terminal prompts that will help with configuration.
+1. [Use this repo as a template](https://github.com/kefimochi/sync-contribution-graph/generate) to create a new repo, and provide a name.
+2. Clone your new repo locally.  `cd` into the newly created directory.
+3. It requires NodeJS and `npm` (or `yarn`) to be installed on your machine. Run `npm i` or `yarn install` in your terminal.
+4. Use `npm start` or `yarn start` in order to trigger a series of terminal prompts that will help with configuration.
    > On Windows, please run it from Git Bash.
 
 If you change your mind about these commits later, you can delete the repository and they'll disappear from your contribution graph.
