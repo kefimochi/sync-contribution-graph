@@ -14,7 +14,7 @@ export default async (input) => {
     // Returns the URL of the Git server.
     const api_uri = `https://github.com/users/${input.username}/contributions?tab=overview&from=${input.year}-12-01&to=${input.year}-12-31`;
 
-    if (input.gitype === 'gitlab') {
+    if (input.git === 'gitlab') {
         const api_uri = `${input.username}/users/${input.username}/activity?from=${input.year}-12-01&to=${input.year}-12-31`;
     }
 

@@ -7,7 +7,7 @@ console.log("\nHello there!\n");
 const questions = [
     {
         type: "input",
-        name: "gitype",
+        name: "git",
         message: "Please enter the type of Git server with which you'd like to sync contributions: `github` or `gitlab`",
         choices: ['github', 'gitlab'],
         default() {
