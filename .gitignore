@@ -1,3 +1,16 @@
+/.idea
+/.vscode
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
 # Logs
 logs
 *.log
@@ -104,4 +117,5 @@ dist
 .tern-port
 
 package-lock.json
+yarn.lock
 script.sh
