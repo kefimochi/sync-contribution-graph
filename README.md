@@ -24,8 +24,8 @@ If you change your mind about these commits later, you can delete the repository
 
 | Key          | Description                                                                                                                                                 | Default value                                        |
 |--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
-| `git type`   | The type of Git server with which you'd like to sync contributions (github, gitlab)                                                                         | github                                               |
-| `git server` | Tthe Github/Gitlab server (no trailing slash) with which you'd like to sync contributions                                                                   | https://github.com                                  |
+| `gittype`   | The type of Git server with which you'd like to sync contributions (github, gitlab)                                                                         | github                                               |
+| `gituri` | Tthe Github/Gitlab server (no trailing slash) with which you'd like to sync contributions                                                                   | https://github.com                                  |
 | `username`   | The username whose graph contributions you'd like to copy.                                                                                                  |                                                      |
 | `year`       | Year that you would like to sync with provided `username`. Currently doesn't support multiple years.                                                        | Current year                                         |
 | `execute`    | Let's the code know whether to simply generate `script.sh` that, when executed, will force push commits to `main`. Or to both generate and execute at once. | `false`, in other words generate _without_ execution |
