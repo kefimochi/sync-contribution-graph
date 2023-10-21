@@ -9,26 +9,28 @@ const getCommand = (contribution) => {
     contribution.count
   );
 };
-
 export default async (input) => {
   // Returns contribution graph html for a full selected year.
   const res = await axios.get(
     `https://github.com/users/${input.username}/contributions?tab=overview&from=${input.year}-12-01&to=${input.year}-12-31`
   );
-
   // Retrieves needed data from the html, loops over green squares with 1+ contributions,
   // and produces a multi-line string that can be run as a bash command.
-  const script = parse(res.data)
-    .querySelectorAll("[data-count]")
-    .map((el) => {
-      return {
-        date: el.attributes["data-date"],
-        count: parseInt(el.attributes["data-count"]),
-      };
-    })
-    .filter((contribution) => contribution.count > 0)
-    .map((contribution) => getCommand(contribution))
-    .join("")
+  const elements = parse(res.data)
+    .querySelectorAll("td.ContributionCalendar-day");
+
+  const days = elements.map((el) => {
+    const innerContent = el.firstChild.innerText;
+    const numContributions = innerContent.split(innerContent.includes('contributions' ? ' contributions' : ' contribution'))?.[0];
+    return {
+      date: el.getAttribute("data-date"),
+      count: isNaN(parseInt(numContributions)) ? 0 : parseInt(numContributions),
+    };
+  });
+  const filteredDays = days.filter((contribution) => contribution.count > 0);
+
+  const script = filteredDays.map((contribution) => getCommand(contribution))
+    .join("\n")
     .concat("git pull origin main\n", "git push -f origin main");
 
   fs.writeFile("script.sh", script, () => {
