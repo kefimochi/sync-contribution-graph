@@ -5,31 +5,40 @@ import shell from "shelljs";
 
 // Gathers needed git commands for bash to execute per provided contribution data.
 const getCommand = (contribution) => {
-  return `GIT_AUTHOR_DATE=${contribution.date}T12:00:00 GIT_COMMITER_DATE=${contribution.date}T12:00:00 git commit --allow-empty -m "Rewriting History!" > /dev/null\n`.repeat(
+  return `GIT_AUTHOR_DATE="${contribution.date}T12:00:00" GIT_COMMITER_DATE="${contribution.date}T12:00:00" git commit --allow-empty -m "Rewriting History!" > /dev/null\n`.repeat(
     contribution.count
   );
 };
+
 export default async (input) => {
   // Returns contribution graph html for a full selected year.
   const res = await axios.get(
-    `https://github.com/users/${input.username}/contributions?tab=overview&from=${input.year}-12-01&to=${input.year}-12-31`
+    `https://github.com/${input.username}?tab=overview&from=${input.year}-12-01&to=${input.year}-12-31`
   );
-  // Retrieves needed data from the html, loops over green squares with 1+ contributions,
-  // and produces a multi-line string that can be run as a bash command.
-  const elements = parse(res.data)
-    .querySelectorAll("td.ContributionCalendar-day");
 
-  const days = elements.map((el) => {
-    const innerContent = el.firstChild.innerText;
-    const numContributions = innerContent.split(innerContent.includes('contributions' ? ' contributions' : ' contribution'))?.[0];
-    return {
+  // Retrieves needed data from the html, grabs all the existing squares.
+  const document = parse(res.data);
+  const elements = document.querySelectorAll("td.ContributionCalendar-day");
+
+  let filteredDays = [];
+  elements.forEach((el) => {
+    // GH no longer stores # of contributions on the squares, so we have to
+    // find corresponding tooltip with accurate data.
+    const tooltipData = document.querySelector(`tool-tip[for="${el.id}"]`);
+    const innerContent = tooltipData.firstChild.textContent;
+
+    // Skipping those that have no contributoons
+    if (innerContent.includes("No")) return;
+
+    const numContributions = innerContent.split(" contribution")?.[0];
+    filteredDays.push({
       date: el.getAttribute("data-date"),
       count: isNaN(parseInt(numContributions)) ? 0 : parseInt(numContributions),
-    };
+    });
   });
-  const filteredDays = days.filter((contribution) => contribution.count > 0);
 
-  const script = filteredDays.map((contribution) => getCommand(contribution))
+  const script = filteredDays
+    .map((contribution) => getCommand(contribution))
     .join("\n")
     .concat("git pull origin main\n", "git push -f origin main");
 
